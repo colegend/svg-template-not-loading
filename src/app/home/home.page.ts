@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -9,5 +9,21 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule],
 })
 export class HomePage {
+
+  @ViewChild("mySvg") svg: any;
+
+  viewBox = `0 0 1000 1000`;
+  
   constructor() {}
+
+  ngAfterViewInit() {
+    const viewBox = this.getElementById("mygroup").getBBox();
+    console.log(viewBox);
+    this.viewBox = `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`;
+  }
+
+  getElementById(id: string) {
+    return this.svg.nativeElement.getElementById(id);
+  }
+
 }
