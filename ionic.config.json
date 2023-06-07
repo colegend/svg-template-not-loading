@@ -1,0 +1,7 @@
+{
+  "name": "svg-template-not-loading",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
