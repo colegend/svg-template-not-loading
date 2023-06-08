@@ -12,8 +12,8 @@ export class HomePage {
 
   @ViewChild("mySvg") svg: any;
 
-  viewBox = `0 0 1000 1000`;
-  
+  viewBox = `0 0 0 0`;
+
   constructor() {}
 
   ngAfterViewInit() {
