@@ -17,9 +17,14 @@ export class HomePage {
   constructor() {}
 
   ngAfterViewInit() {
-    const viewBox = this.getElementById("mygroup").getBBox();
-    console.log(viewBox);
-    this.viewBox = `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`;
+    this.svg.nativeElement.addEventListener("load", () => {
+      setTimeout(() => {
+        console.log("SVG loaded.");
+        const viewBox = this.getElementById("mygroup").getBBox();
+        console.log(viewBox);
+        this.viewBox = `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`;
+      }, 0)
+    });
   }
 
   getElementById(id: string) {
