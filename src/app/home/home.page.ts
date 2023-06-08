@@ -12,19 +12,26 @@ export class HomePage {
 
   @ViewChild("mySvg") svg: any;
 
-  viewBox = `0 0 0 0`;
+  defaultViewBox = `0 0 0 0`;
+  viewBox = this.defaultViewBox;
+  loading = true;
 
   constructor() {}
 
   ngAfterViewInit() {
-    this.svg.nativeElement.addEventListener("load", () => {
+    this.init();
+  }
+
+  init() {
+    const viewBox = this.getElementById("mygroup").getBBox();
+    console.log(viewBox);
+    this.viewBox = `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`;
+
+    if (this.viewBox == this.defaultViewBox) {
       setTimeout(() => {
-        console.log("SVG loaded.");
-        const viewBox = this.getElementById("mygroup").getBBox();
-        console.log(viewBox);
-        this.viewBox = `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`;
-      }, 0)
-    });
+        this.init();
+      }, 100)
+    }
   }
 
   getElementById(id: string) {
